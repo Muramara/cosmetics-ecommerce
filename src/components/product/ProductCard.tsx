@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingBag, Heart } from 'lucide-react';
+import { Heart, ShoppingCart } from 'lucide-react';
 import { Product } from '../../types';
 import { useCart } from '../../context/CartContext';
 import Button from '../ui/Button';
@@ -37,7 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               className="bg-pink-500 text-white p-2 rounded-full hover:bg-pink-600 transition-colors"
               aria-label="Add to cart"
             >
-              <ShoppingBag size={18} />
+              <ShoppingCart size={18} />
             </button>
             <button 
               className="bg-gray-100 text-gray-700 p-2 rounded-full hover:bg-gray-200 transition-colors"

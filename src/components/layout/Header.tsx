@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingBag, User, Heart, Menu, X, Search } from 'lucide-react';
+import { ShoppingCart, User, Heart, Menu, X, Search } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 
@@ -28,14 +28,20 @@ const Header: React.FC = () => {
             <Link to="/products" className="text-gray-700 hover:text-pink-500 transition-colors">
               Shop
             </Link>
-            <Link to="/categories/skincare" className="text-gray-700 hover:text-pink-500 transition-colors">
-              Skincare
+            <Link to="/categories/fragrance" className="text-gray-700 hover:text-pink-500 transition-colors">
+              Fragrance
             </Link>
             <Link to="/categories/makeup" className="text-gray-700 hover:text-pink-500 transition-colors">
               Makeup
             </Link>
-            <Link to="/categories/fragrance" className="text-gray-700 hover:text-pink-500 transition-colors">
-              Fragrance
+            {/* <Link to="/categories/skincare" className="text-gray-700 hover:text-pink-500 transition-colors">
+              Skincare
+            </Link> */}
+            <Link to="/about-us" className="text-gray-700 hover:text-pink-500 transition-colors">
+              About Us
+            </Link>
+            <Link to="" className="text-gray-700 hover:text-pink-500 transition-colors">
+              Contact Us
             </Link>
           </nav>
           
@@ -83,7 +89,7 @@ const Header: React.FC = () => {
             </Link>
             
             <Link to="/cart" className="relative text-gray-700 hover:text-pink-500 transition-colors">
-              <ShoppingBag size={20} />
+              <ShoppingCart size={20} />
               {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 bg-pink-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
                   {totalItems}
@@ -121,12 +127,19 @@ const Header: React.FC = () => {
               >
                 Shop
               </Link>
-              <Link 
+              {/* <Link 
                 to="/categories/skincare" 
                 className="text-gray-700 hover:text-pink-500 transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Skincare
+              </Link> */}
+              <Link 
+                to="/categories/fragrance" 
+                className="text-gray-700 hover:text-pink-500 transition-colors py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Fragrance
               </Link>
               <Link 
                 to="/categories/makeup" 
@@ -136,11 +149,18 @@ const Header: React.FC = () => {
                 Makeup
               </Link>
               <Link 
-                to="/categories/fragrance" 
+                to="/about-us" 
                 className="text-gray-700 hover:text-pink-500 transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Fragrance
+                About Us
+              </Link>
+              <Link 
+                to="" 
+                className="text-gray-700 hover:text-pink-500 transition-colors py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact Us
               </Link>
             </nav>
           </div>

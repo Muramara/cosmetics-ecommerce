@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
 import { useParams, Link } from 'react-router-dom';
-import { ShoppingBag, Heart, Share2, Star, Truck, RotateCcw, Shield } from 'lucide-react';
+import { Heart, Share2, Star, Truck, RotateCcw, Shield, ShoppingCart } from 'lucide-react';
 import { getProductById, products } from '../data/products';
 import { useCart } from '../context/CartContext';
 import Button from '../components/ui/Button';
 import ProductGrid from '../components/product/ProductGrid';
+import { useNavigate } from 'react-router-dom';
+
 
 const ProductDetailPage: React.FC = () => {
+  const { user, isAuthenticated } = useAuth();
   const { id } = useParams<{ id: string }>();
   const product = getProductById(id || '');
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState('description');
+  const navigate = useNavigate();
+
   
   // Get related products (same category)
   const relatedProducts = products
@@ -31,7 +37,7 @@ const ProductDetailPage: React.FC = () => {
       <div className="container mx-auto px-4 py-16 text-center">
         <h1 className="text-2xl font-medium text-gray-900 mb-4">Product Not Found</h1>
         <p className="text-gray-600 mb-8">The product you are looking for does not exist or has been removed.</p>
-        <Button as={Link} to="/products">
+        <Button onClick={() => navigate('products')}>
           Return to Shop
         </Button>
       </div>
@@ -39,6 +45,11 @@ const ProductDetailPage: React.FC = () => {
   }
   
   const handleAddToCart = () => {
+    if (!isAuthenticated) {
+      alert('You need to be logged in to add items to your cart.');
+      navigate('/login');
+      return;
+    }
     addToCart(product, quantity);
   };
   
@@ -153,7 +164,7 @@ const ProductDetailPage: React.FC = () => {
                 className="flex items-center gap-2"
                 size="lg"
               >
-                <ShoppingBag size={18} />
+                <ShoppingCart size={18} />
                 Add to Cart
               </Button>
               
