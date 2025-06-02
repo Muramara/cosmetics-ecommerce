@@ -10,7 +10,7 @@ const AboutUsPage: React.FC = () => {
           Our Story
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          At Lumière, we believe in the transformative power of beauty and self-care.
+          At Lexy Fragrance, we believe in the transformative power of beauty and self-care.
           Our journey began with a simple vision: to create luxury cosmetics that enhance
           natural beauty while prioritizing sustainability and ethical practices.
         </p>
@@ -126,7 +126,7 @@ const AboutUsPage: React.FC = () => {
             <p className="text-pink-500 font-medium mb-4">Chief Executive Officer</p>
             <p className="text-gray-600">
               With over 15 years of experience in the beauty industry, Janet leads
-              Lumière's vision of sustainable luxury beauty. Her passion for clean
+              Lexy Fragrance's vision of sustainable luxury beauty. Her passion for clean
               beauty and innovation drives our company's mission forward.
             </p>
           </div>
@@ -143,7 +143,7 @@ const AboutUsPage: React.FC = () => {
             </h3>
             <p className="text-pink-500 font-medium mb-4">Chief Operating Officer</p>
             <p className="text-gray-600">
-              Lexy brings extensive operational expertise to Lumière, ensuring our
+              Lexy brings extensive operational expertise to Lexy Fragrance, ensuring our
               commitment to sustainability and quality is reflected in every aspect
               of our business operations.
             </p>

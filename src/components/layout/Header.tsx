@@ -40,7 +40,7 @@ const Header: React.FC = () => {
             <Link to="/about-us" className="text-gray-700 hover:text-pink-500 transition-colors">
               About Us
             </Link>
-            <Link to="" className="text-gray-700 hover:text-pink-500 transition-colors">
+            <Link to="/contact" className="text-gray-700 hover:text-pink-500 transition-colors">
               Contact Us
             </Link>
           </nav>
@@ -156,7 +156,7 @@ const Header: React.FC = () => {
                 About Us
               </Link>
               <Link 
-                to="" 
+                to="/contact" 
                 className="text-gray-700 hover:text-pink-500 transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
