@@ -61,7 +61,7 @@ const ContactPage: React.FC = () => {
                       <Instagram className="w-5 h-5" />
                     </a>
                     <a 
-                      href="https://l.instagram.com/?u=http%3A%2F%2Ftiktok.com%2F%40lexyfragrance%3Ffbclid%3DPAZXh0bgNhZW0CMTEAAacsPjWDRooSI-Mfx4z4OoDHvD5EuIXJg0nrgakoT8CXExHaEIRV1893vpP_zA_aem_V4jByMQapqGi1MSvyt1eCQ&e=AT05B3t7rQGlkFTOiI9C9u0rkwJFxZEPEK7fTGaaXOhfpYr-QDnviU0fChsDW5G-1NWq_ou8TA6YcvG-Gp-Oy5ej-Y8yyOLK1PZ-JN0" 
+                      href="https://www.tiktok.com/@lexyfragrance" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="p-2 bg-gray-50 text-gray-600 hover:text-pink-500 rounded-full transition-colors"

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Facebook, Twitter } from 'lucide-react';
+import { FaTiktok } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
   return (
@@ -14,15 +15,26 @@ const Footer: React.FC = () => {
               Premium cosmetics for the modern, conscious consumer. Ethically sourced, cruelty-free, and made with love.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-pink-500 transition-colors">
+              <a
+                href="https://www.instagram.com/lexyfragrance?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                className="text-gray-400 hover:text-pink-500 transition-colors"
+                target="_blank"
+              >
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-pink-500 transition-colors">
+              <a
+                href="https://www.tiktok.com/@lexyfragrance"
+                className="text-gray-400 hover:text-pink-500 transition-colors"
+                target="_blank"
+              >
+                <FaTiktok size={20} />
+              </a>
+              {/* <a href="#" className="text-gray-400 hover:text-pink-500 transition-colors">
                 <Facebook size={20} />
               </a>
               <a href="#" className="text-gray-400 hover:text-pink-500 transition-colors">
                 <Twitter size={20} />
-              </a>
+              </a> */}
             </div>
           </div>
           

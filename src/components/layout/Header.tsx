@@ -8,6 +8,7 @@ const Header: React.FC = () => {
   const { totalItems } = useCart();
   const { isAuthenticated, user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isFragranceDropdownOpen, setIsFragranceDropdownOpen] = useState(false);
   
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   
@@ -24,6 +25,38 @@ const Header: React.FC = () => {
           <nav className="hidden md:flex space-x-8">
             <Link to="/" className="text-gray-700 hover:text-pink-500 transition-colors">
               Home
+            </Link>
+            <div className="relative group">
+              <button 
+                className="text-gray-700 hover:text-pink-500 transition-colors"
+                onMouseEnter={() => setIsFragranceDropdownOpen(true)}
+                onMouseLeave={() => setIsFragranceDropdownOpen(false)}
+              >
+                Lexy Fragrance
+              </button>
+              {isFragranceDropdownOpen && (
+                <div 
+                  className="absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-md py-2"
+                  onMouseEnter={() => setIsFragranceDropdownOpen(true)}
+                  onMouseLeave={() => setIsFragranceDropdownOpen(false)}
+                >
+                  <Link 
+                    to="/categories/for-her" 
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    For Her
+                  </Link>
+                  <Link 
+                    to="/categories/for-him" 
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    For Him
+                  </Link>
+                </div>
+              )}
+            </div>
+            <Link to="/makeup" className="text-gray-700 hover:text-pink-500 transition-colors">
+              Limitless by Lexy
             </Link>
             <Link to="/products" className="text-gray-700 hover:text-pink-500 transition-colors">
               Shop

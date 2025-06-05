@@ -17,17 +17,17 @@ const HomePage: React.FC = () => {
         {/* Featured Products */}
         <ProductGrid 
           products={featuredProducts}
-          title="Featured Products" 
+          title="Our New Collection" 
         />
         
         {/* Bestsellers */}
         <ProductGrid 
           products={bestsellers}
-          title="Bestsellers" 
+          title="Fan Favorites" 
         />
         
         {/* Banner */}
-        <div className="my-16 bg-pink-50 rounded-lg overflow-hidden">
+        {/* <div className="my-16 bg-pink-50 rounded-lg overflow-hidden">
           <div className="flex flex-col md:flex-row">
             <div className="md:w-1/2 p-8 md:p-12 flex items-center">
               <div>
@@ -50,59 +50,49 @@ const HomePage: React.FC = () => {
               />
             </div>
           </div>
-        </div>
+        </div> */}
         
         {/* Categories */}
         <div className="my-16">
           <h2 className="text-2xl font-serif font-medium text-gray-900 mb-8">Shop by Category</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="group relative h-80 rounded-lg overflow-hidden">
-              <img 
-                src="https://images.pexels.com/photos/3785149/pexels-photo-3785149.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" 
-                alt="Skincare"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                <div className="p-6 w-full">
-                  <h3 className="font-serif text-2xl font-medium text-white mb-2">Skincare</h3>
-                  <Link 
-                    to="/categories/skincare"
-                    className="inline-block text-white text-sm underline underline-offset-2 hover:text-pink-200 transition-colors"
-                  >
-                    Shop Collection
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="group relative h-80 rounded-lg overflow-hidden">
-              <img 
-                src="https://images.pexels.com/photos/2533266/pexels-photo-2533266.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" 
-                alt="Makeup"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                <div className="p-6 w-full">
-                  <h3 className="font-serif text-2xl font-medium text-white mb-2">Makeup</h3>
-                  <Link 
-                    to="/categories/makeup"
-                    className="inline-block text-white text-sm underline underline-offset-2 hover:text-pink-200 transition-colors"
-                  >
-                    Shop Collection
-                  </Link>
-                </div>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="group relative h-80 rounded-lg overflow-hidden">
               <img 
                 src="https://images.pexels.com/photos/965990/pexels-photo-965990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" 
-                alt="Fragrance"
+                alt="Lexy Fragrance"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                 <div className="p-6 w-full">
-                  <h3 className="font-serif text-2xl font-medium text-white mb-2">Fragrance</h3>
+                  <h3 className="font-serif text-2xl font-medium text-white mb-2">Lexy Fragrance</h3>
+                  <div className="space-y-2 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                    <Link 
+                      to="/categories/for-her"
+                      className="block text-white text-sm hover:text-pink-200 transition-colors"
+                    >
+                      For Her
+                    </Link>
+                    <Link 
+                      to="/categories/for-him"
+                      className="block text-white text-sm hover:text-pink-200 transition-colors"
+                    >
+                      For Him
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="group relative h-80 rounded-lg overflow-hidden">
+              <img 
+                src="https://images.pexels.com/photos/2113855/pexels-photo-2113855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" 
+                alt="Limitless by Lexy"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                <div className="p-6 w-full">
+                  <h3 className="font-serif text-2xl font-medium text-white mb-2">Limitless by Lexy</h3>
                   <Link 
-                    to="/categories/fragrance"
+                    to="/makeup"
                     className="inline-block text-white text-sm underline underline-offset-2 hover:text-pink-200 transition-colors"
                   >
                     Shop Collection

@@ -15,11 +15,11 @@ const Hero: React.FC = () => {
               Luxurious, cruelty-free cosmetics made with clean ingredients that nourish your skin and enhance your natural beauty.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" as={Link} to="/products">
-                Shop Now
+              <Button size="lg">
+                <Link to="/products">Shop Now</Link>
               </Button>
-              <Button size="lg" variant="outline" as={Link} to="/our-story">
-                Our Story
+              <Button size="lg" variant="outline">
+                <Link to="/about-us">Our Story</Link>
               </Button>
             </div>
           </div>
@@ -60,7 +60,7 @@ const Hero: React.FC = () => {
       </div>
       
       {/* Features banner */}
-      <div className="bg-white py-6 border-t border-gray-100">
+      {/* <div className="bg-white py-6 border-t border-gray-100">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="p-4">
@@ -81,7 +81,7 @@ const Hero: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
