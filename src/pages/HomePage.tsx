@@ -1,13 +1,13 @@
 import React from 'react';
 import Hero from '../components/home/Hero';
 import ProductGrid from '../components/product/ProductGrid';
-import { getFeaturedProducts, getBestsellers } from '../data/products';
+import { getFeaturedProducts, getFanFavorites } from '../data/products';
 import Button from '../components/ui/Button';
 import { Link } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
   const featuredProducts = getFeaturedProducts();
-  const bestsellers = getBestsellers();
+  const fanFavorites = getFanFavorites();
   
   return (
     <div>
@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
         
         {/* Bestsellers */}
         <ProductGrid 
-          products={bestsellers}
+          products={fanFavorites}
           title="Fan Favorites" 
         />
         

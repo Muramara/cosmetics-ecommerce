@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="font-serif text-xl font-medium text-gray-900 mb-4">LexiFragrance</h3>
+            <h3 className="font-serif text-xl font-medium text-gray-900 mb-4">Lexy Fragrance</h3>
             <p className="text-gray-600 mb-4">
               Premium cosmetics for the modern, conscious consumer. Ethically sourced, cruelty-free, and made with love.
             </p>
@@ -128,7 +128,7 @@ const Footer: React.FC = () => {
         <div className="mt-12 pt-8 border-t border-gray-200">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm mb-4 md:mb-0">
-              &copy; {new Date().getFullYear()} LexiFragrance. All rights reserved.
+              &copy; {new Date().getFullYear()} Lexy Fragrance. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <Link to="/privacy" className="text-gray-500 hover:text-gray-700 text-sm">

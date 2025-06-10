@@ -138,7 +138,7 @@ const ProductListPage: React.FC = () => {
             
             {/* Categories */}
             <div className="mb-6">
-              <h3 className="text-sm font-medium text-gray-900 mb-3">Categories</h3>
+              <h3 className="text-sm font-medium text-gray-900 mb-3">Lexy Fragrance</h3>
               <div className="space-y-2">
                 {categories.map(category => (
                   <div key={category} className="flex items-center">

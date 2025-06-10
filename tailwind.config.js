@@ -6,6 +6,8 @@ export default {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         serif: ['Playfair Display', 'serif'],
+        baskerville: ['Baskerville', 'Georgia', 'serif'],
+        libre: ['"Libre Baskerville"', 'serif'],
       },
       colors: {
         pink: {

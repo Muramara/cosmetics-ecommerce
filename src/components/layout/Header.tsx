@@ -17,8 +17,8 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="font-serif text-2xl font-bold text-pink-500">
-            LexiFragrance
+          <Link to="/" className="font-baskerville text-2xl font-bold text-pink-500">
+            LEXY COSMETICS
           </Link>
           
           {/* Desktop Navigation */}
@@ -64,9 +64,9 @@ const Header: React.FC = () => {
             <Link to="/categories/fragrance" className="text-gray-700 hover:text-pink-500 transition-colors">
               Fragrance
             </Link>
-            <Link to="/categories/makeup" className="text-gray-700 hover:text-pink-500 transition-colors">
+            {/* <Link to="/categories/makeup" className="text-gray-700 hover:text-pink-500 transition-colors">
               Makeup
-            </Link>
+            </Link> */}
             {/* <Link to="/categories/skincare" className="text-gray-700 hover:text-pink-500 transition-colors">
               Skincare
             </Link> */}
@@ -174,13 +174,13 @@ const Header: React.FC = () => {
               >
                 Fragrance
               </Link>
-              <Link 
+              {/* <Link 
                 to="/categories/makeup" 
                 className="text-gray-700 hover:text-pink-500 transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Makeup
-              </Link>
+              </Link> */}
               <Link 
                 to="/about-us" 
                 className="text-gray-700 hover:text-pink-500 transition-colors py-2"

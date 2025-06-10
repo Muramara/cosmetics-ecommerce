@@ -8,7 +8,7 @@ export interface Product {
   rating: number;
   reviews: number;
   featured?: boolean;
-  bestseller?: boolean;
+  fanFavorite?: boolean;
   new?: boolean;
 }
 
