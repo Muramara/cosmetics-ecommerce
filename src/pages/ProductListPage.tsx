@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Filter, SlidersHorizontal } from 'lucide-react';
 import { products } from '../data/products';
 import ProductGrid from '../components/product/ProductGrid';
 import Button from '../components/ui/Button';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const ProductListPage: React.FC = () => {
   const [filteredProducts, setFilteredProducts] = useState(products);
@@ -10,12 +11,42 @@ const ProductListPage: React.FC = () => {
   const [priceFilter, setPriceFilter] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<string>('featured');
   const [showFilters, setShowFilters] = useState(false);
+  const { categoryParam } = useParams<{ categoryParam: string }>();
+  const navigate = useNavigate();
   
   const categories = [...new Set(products.map(product => product.category))];
+
+  useEffect(() => {
+    if (categoryParam) {
+      let category = "";
+      switch (categoryParam) {
+        case 'for-her':
+          category = 'For Her';
+          break;
+        case 'for-him':
+          category = 'For Him';
+          break;
+        default:
+          category = ""; // No specific category
+          break;
+      }
+      handleCategoryChange(category);
+    }
+  }, [categoryParam]);
   
-  const handleCategoryChange = (category: string | null) => {
+  const handleCategoryChange = (category: string | null, updateURL: boolean = true) => {
     setCategoryFilter(category);
     filterProducts(category, priceFilter);
+
+    // Push to URL if triggered by user
+    if (updateURL && category) {
+      const urlParam = category.toLowerCase().replace(/\s+/g, "-"); // e.g., "For Her" → "for-her"
+      navigate(`/products/${urlParam}`);
+    }
+
+    if (updateURL && !category) {
+      navigate("/products");
+    }
   };
   
   const handlePriceChange = (price: string | null) => {
@@ -72,7 +103,6 @@ const ProductListPage: React.FC = () => {
       handleSortChange({ target: { value: sortBy } } as React.ChangeEvent<HTMLSelectElement>);
       return;
     }
-    
     setFilteredProducts(filtered);
   };
   

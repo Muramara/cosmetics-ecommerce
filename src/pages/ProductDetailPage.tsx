@@ -94,9 +94,9 @@ const ProductDetailPage: React.FC = () => {
                   Featured
                 </span>
               )}
-              {product.bestseller && (
+              {product.fanFavorite && (
                 <span className="ml-2 bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">
-                  Bestseller
+                  Fan Favorite
                 </span>
               )}
               {product.new && (

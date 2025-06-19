@@ -67,13 +67,13 @@ const HomePage: React.FC = () => {
                   <h3 className="font-serif text-2xl font-medium text-white mb-2">Lexy Fragrance</h3>
                   <div className="space-y-2 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
                     <Link 
-                      to="/categories/for-her"
+                      to="/products/for-her"
                       className="block text-white text-sm hover:text-pink-200 transition-colors"
                     >
                       For Her
                     </Link>
                     <Link 
-                      to="/categories/for-him"
+                      to="/products/for-him"
                       className="block text-white text-sm hover:text-pink-200 transition-colors"
                     >
                       For Him

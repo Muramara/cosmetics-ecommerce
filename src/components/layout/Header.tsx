@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart, User, Heart, Menu, X, Search } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
@@ -9,6 +9,30 @@ const Header: React.FC = () => {
   const { isAuthenticated, user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFragranceDropdownOpen, setIsFragranceDropdownOpen] = useState(false);
+  const timeoutRef = useRef<number | null>(null);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setIsFragranceDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsFragranceDropdownOpen(false);
+    }, 100); // delay in ms
+  };
+
+  const handleUserMenuMouseEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setIsUserMenuOpen(true);
+  };
+
+  const handleUserMenuMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsUserMenuOpen(false);
+    }, 100); // delay in ms
+  };  
   
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   
@@ -26,28 +50,25 @@ const Header: React.FC = () => {
             <Link to="/" className="text-gray-700 hover:text-pink-500 transition-colors">
               Home
             </Link>
-            <div className="relative group">
-              <button 
-                className="text-gray-700 hover:text-pink-500 transition-colors"
-                onMouseEnter={() => setIsFragranceDropdownOpen(true)}
-                onMouseLeave={() => setIsFragranceDropdownOpen(false)}
-              >
+            <div
+              className="relative group"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button className="text-gray-700 hover:text-pink-500 transition-colors">
                 Lexy Fragrance
               </button>
+
               {isFragranceDropdownOpen && (
-                <div 
-                  className="absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-md py-2"
-                  onMouseEnter={() => setIsFragranceDropdownOpen(true)}
-                  onMouseLeave={() => setIsFragranceDropdownOpen(false)}
-                >
-                  <Link 
-                    to="/categories/for-her" 
+                <div className="absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-md py-2">
+                  <Link
+                    to="/products/for-her"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   >
                     For Her
                   </Link>
-                  <Link 
-                    to="/categories/for-him" 
+                  <Link
+                    to="/products/for-him"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   >
                     For Him
@@ -61,9 +82,9 @@ const Header: React.FC = () => {
             <Link to="/products" className="text-gray-700 hover:text-pink-500 transition-colors">
               Shop
             </Link>
-            <Link to="/categories/fragrance" className="text-gray-700 hover:text-pink-500 transition-colors">
+            {/* <Link to="/categories/fragrance" className="text-gray-700 hover:text-pink-500 transition-colors">
               Fragrance
-            </Link>
+            </Link> */}
             {/* <Link to="/categories/makeup" className="text-gray-700 hover:text-pink-500 transition-colors">
               Makeup
             </Link> */}
@@ -85,11 +106,16 @@ const Header: React.FC = () => {
             </button>
             
             {isAuthenticated ? (
-              <div className="relative group">
+              <div 
+                className="relative group"
+                onMouseEnter={handleUserMenuMouseEnter}
+                onMouseLeave={handleUserMenuMouseLeave}
+              >
                 <Link to="/account" className="text-gray-700 hover:text-pink-500 transition-colors">
                   <User size={20} />
                 </Link>
-                <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50 hidden group-hover:block">
+                {isUserMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
                   <div className="px-4 py-2 border-b border-gray-100">
                     <p className="text-sm font-medium text-gray-900">{user?.name}</p>
                     <p className="text-xs text-gray-500">{user?.email}</p>
@@ -110,6 +136,9 @@ const Header: React.FC = () => {
                     Sign out
                   </button>
                 </div>
+
+                )}
+                
               </div>
             ) : (
               <Link to="/login" className="text-gray-700 hover:text-pink-500 transition-colors">
