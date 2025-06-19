@@ -42,29 +42,29 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-medium text-gray-900 mb-4">Shop</h4>
             <ul className="space-y-2">
-              <li>
+              {/* <li>
                 <Link to="/categories/skincare" className="text-gray-600 hover:text-pink-500 transition-colors">
                   Skincare
                 </Link>
-              </li>
+              </li> */}
               <li>
-                <Link to="/categories/makeup" className="text-gray-600 hover:text-pink-500 transition-colors">
-                  Makeup
+                <Link to="/makeup" className="text-gray-600 hover:text-pink-500 transition-colors">
+                  Limitless by Lexy
                 </Link>
               </li>
               <li>
-                <Link to="/categories/fragrance" className="text-gray-600 hover:text-pink-500 transition-colors">
-                  Fragrance
+                <Link to="/products" className="text-gray-600 hover:text-pink-500 transition-colors">
+                  Lexy Fragrance
                 </Link>
               </li>
               <li>
-                <Link to="/new-arrivals" className="text-gray-600 hover:text-pink-500 transition-colors">
+                <Link to="/products/new" className="text-gray-600 hover:text-pink-500 transition-colors">
                   New Arrivals
                 </Link>
               </li>
               <li>
                 <Link to="/bestsellers" className="text-gray-600 hover:text-pink-500 transition-colors">
-                  Bestsellers
+                  Fan Favorites
                 </Link>
               </li>
             </ul>
@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
                   Contact Us
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/shipping" className="text-gray-600 hover:text-pink-500 transition-colors">
                   Shipping Information
                 </Link>
@@ -93,7 +93,7 @@ const Footer: React.FC = () => {
                 <Link to="/faq" className="text-gray-600 hover:text-pink-500 transition-colors">
                   FAQ
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
           
@@ -106,7 +106,7 @@ const Footer: React.FC = () => {
                   Our Story
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/sustainability" className="text-gray-600 hover:text-pink-500 transition-colors">
                   Sustainability
                 </Link>
@@ -120,7 +120,7 @@ const Footer: React.FC = () => {
                 <Link to="/careers" className="text-gray-600 hover:text-pink-500 transition-colors">
                   Careers
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -130,7 +130,7 @@ const Footer: React.FC = () => {
             <p className="text-gray-500 text-sm mb-4 md:mb-0">
               &copy; {new Date().getFullYear()} Lexy Fragrance. All rights reserved.
             </p>
-            <div className="flex space-x-6">
+            {/* <div className="flex space-x-6">
               <Link to="/privacy" className="text-gray-500 hover:text-gray-700 text-sm">
                 Privacy Policy
               </Link>
@@ -140,7 +140,7 @@ const Footer: React.FC = () => {
               <Link to="/cookies" className="text-gray-500 hover:text-gray-700 text-sm">
                 Cookie Policy
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
