@@ -6,7 +6,7 @@ const Hero: React.FC = () => {
   return (
     <div 
       className="relative h-[90vh] bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url('/images/logo.jpg')` }}
+      style={{ backgroundImage: `url('/images/general/logo.jpg')` }}
     >
       {/* Optional: Add a soft overlay for contrast */}
       <div className="absolute inset-0 bg-orange-500/40 backdrop-blur-sm"></div>
