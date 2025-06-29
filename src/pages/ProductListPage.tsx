@@ -108,14 +108,14 @@ const ProductListPage: React.FC = () => {
   
   const applyPriceFilter = (products: any[], priceRange: string) => {
     switch (priceRange) {
-      case 'under-25':
-        return products.filter(product => product.price < 25);
-      case '25-50':
-        return products.filter(product => product.price >= 25 && product.price <= 50);
-      case '50-100':
-        return products.filter(product => product.price > 50 && product.price <= 100);
-      case 'over-100':
-        return products.filter(product => product.price > 100);
+      case 'under-1000':
+        return products.filter(product => product.price < 1000);
+      case '1000-1500':
+        return products.filter(product => product.price >= 1000 && product.price <= 1500);
+      case '1500-2000':
+        return products.filter(product => product.price > 1500 && product.price <= 2000);
+      case 'over-2000':
+        return products.filter(product => product.price > 2000);
       default:
         return products;
     }
@@ -208,53 +208,53 @@ const ProductListPage: React.FC = () => {
                 <div className="flex items-center">
                   <input
                     type="radio"
-                    id="price-under-25"
+                    id="price-under-1000"
                     name="price"
-                    checked={priceFilter === 'under-25'}
-                    onChange={() => handlePriceChange('under-25')}
+                    checked={priceFilter === 'under-1000'}
+                    onChange={() => handlePriceChange('under-1000')}
                     className="h-4 w-4 text-pink-500 focus:ring-pink-400"
                   />
-                  <label htmlFor="price-under-25" className="ml-2 text-sm text-gray-700">
-                    Under $25
+                  <label htmlFor="price-under-1000" className="ml-2 text-sm text-gray-700">
+                    Under KSH.1000
                   </label>
                 </div>
                 <div className="flex items-center">
                   <input
                     type="radio"
-                    id="price-25-50"
+                    id="price-1000-1500"
                     name="price"
-                    checked={priceFilter === '25-50'}
-                    onChange={() => handlePriceChange('25-50')}
+                    checked={priceFilter === '1000-1500'}
+                    onChange={() => handlePriceChange('1000-1500')}
                     className="h-4 w-4 text-pink-500 focus:ring-pink-400"
                   />
-                  <label htmlFor="price-25-50" className="ml-2 text-sm text-gray-700">
-                    $25 - $50
+                  <label htmlFor="price-1000-1500" className="ml-2 text-sm text-gray-700">
+                    KSH.1000 - KSH.1500
                   </label>
                 </div>
                 <div className="flex items-center">
                   <input
                     type="radio"
-                    id="price-50-100"
+                    id="price-1500-2000"
                     name="price"
-                    checked={priceFilter === '50-100'}
-                    onChange={() => handlePriceChange('50-100')}
+                    checked={priceFilter === '1500-2000'}
+                    onChange={() => handlePriceChange('1500-2000')}
                     className="h-4 w-4 text-pink-500 focus:ring-pink-400"
                   />
-                  <label htmlFor="price-50-100" className="ml-2 text-sm text-gray-700">
-                    $50 - $100
+                  <label htmlFor="price-1500-2000" className="ml-2 text-sm text-gray-700">
+                    KSH.1500 - KSH.2000
                   </label>
                 </div>
                 <div className="flex items-center">
                   <input
                     type="radio"
-                    id="price-over-100"
+                    id="price-over-2000"
                     name="price"
-                    checked={priceFilter === 'over-100'}
-                    onChange={() => handlePriceChange('over-100')}
+                    checked={priceFilter === 'over-2000'}
+                    onChange={() => handlePriceChange('over-2000')}
                     className="h-4 w-4 text-pink-500 focus:ring-pink-400"
                   />
-                  <label htmlFor="price-over-100" className="ml-2 text-sm text-gray-700">
-                    Over $100
+                  <label htmlFor="price-over-2000" className="ml-2 text-sm text-gray-700">
+                    Over KSH.2000
                   </label>
                 </div>
                 <div className="flex items-center">

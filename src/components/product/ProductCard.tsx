@@ -53,7 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           {product.new && (
             <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded">New</span>
           )}
-          {product.bestseller && (
+          {product.fanFavorite && (
             <span className="bg-amber-500 text-white text-xs px-2 py-1 rounded">Bestseller</span>
           )}
           {product.featured && (
@@ -67,7 +67,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <Link to={`/product/${product.id}`} className="font-medium text-gray-900 hover:text-pink-500 transition-colors">
             {product.name}
           </Link>
-          <span className="font-medium">${product.price}</span>
+          <span className="font-medium">KSH.{product.price}</span>
         </div>
         <p className="text-sm text-gray-500 capitalize">{product.category}</p>
         <div className="flex items-center space-x-1">
