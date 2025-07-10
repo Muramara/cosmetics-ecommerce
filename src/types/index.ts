@@ -1,5 +1,5 @@
 export interface Product {
-  id: string;
+  product_id: number;
   name: string;
   description: string;
   price: number;
@@ -8,7 +8,7 @@ export interface Product {
   rating: number;
   reviews: number;
   featured?: boolean;
-  fanFavorite?: boolean;
+  fan_favorite?: boolean;
   new?: boolean;
 }
 

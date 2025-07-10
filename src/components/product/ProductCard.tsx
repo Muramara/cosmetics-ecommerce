@@ -21,7 +21,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="group relative">
       <div className="relative overflow-hidden rounded-lg">
-        <Link to={`/product/${product.id}`}>
+        <Link to={`/product/${product.product_id}`}>
           <img 
             src={product.image} 
             alt={product.name}
@@ -53,8 +53,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           {product.new && (
             <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded">New</span>
           )}
-          {product.fanFavorite && (
-            <span className="bg-amber-500 text-white text-xs px-2 py-1 rounded">Bestseller</span>
+          {product.fan_favorite && (
+            <span className="bg-amber-500 text-white text-xs px-2 py-1 rounded">Fan Favorite</span>
           )}
           {product.featured && (
             <span className="bg-purple-500 text-white text-xs px-2 py-1 rounded">Featured</span>
@@ -64,7 +64,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       
       <div className="mt-4 space-y-1">
         <div className="flex items-center justify-between">
-          <Link to={`/product/${product.id}`} className="font-medium text-gray-900 hover:text-pink-500 transition-colors">
+          <Link to={`/product/${product.product_id}`} className="font-medium text-gray-900 hover:text-pink-500 transition-colors">
             {product.name}
           </Link>
           <span className="font-medium">KSH.{product.price}</span>

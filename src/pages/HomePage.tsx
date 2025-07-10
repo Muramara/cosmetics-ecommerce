@@ -1,13 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Hero from '../components/home/Hero';
 import ProductGrid from '../components/product/ProductGrid';
-import { getFeaturedProducts, getFanFavorites } from '../data/products';
 import Button from '../components/ui/Button';
 import { Link } from 'react-router-dom';
+import { fetchProducts } from '../api/products';
+import {
+  getFeaturedProducts,
+  getFanFavorites,
+  getNewProducts,
+  getProductsByCategory
+} from '../utils/productFilters';
+import { Product } from '../types';
 
 const HomePage: React.FC = () => {
-  const featuredProducts = getFeaturedProducts();
-  const fanFavorites = getFanFavorites();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [featuredProducts, setFeatured] = useState<Product[]>([]);
+  const [fanFavorites, setFavorites] = useState<Product[]>([]);
+  const [newArrivals, setNewArrivals] = useState<Product[]>([]);
+
+  useEffect(() => {
+    fetchProducts().then((data) => {
+      if (data) {
+        setProducts(data);
+        setFeatured(getFeaturedProducts(data));
+        setFavorites(getFanFavorites(data));
+        setNewArrivals(getNewProducts(data));
+      } else if (data === null) {
+        console.error('Failed to fetch products');
+      }
+    });
+  }, []);
   
   return (
     <div>
@@ -20,7 +42,7 @@ const HomePage: React.FC = () => {
           title="Our New Collection" 
         />
         
-        {/* Bestsellers */}
+        {/* Fan Favorites */}
         <ProductGrid 
           products={fanFavorites}
           title="Fan Favorites" 

@@ -1,65 +1,69 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { fetchProducts } from '../api/products';
+import { Product } from '../types';
 import { Filter, SlidersHorizontal } from 'lucide-react';
-import { products } from '../data/products';
 import ProductGrid from '../components/product/ProductGrid';
 import Button from '../components/ui/Button';
-import { useParams, useNavigate } from 'react-router-dom';
 
 const ProductListPage: React.FC = () => {
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
   const [priceFilter, setPriceFilter] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<string>('featured');
   const [showFilters, setShowFilters] = useState(false);
   const { categoryParam } = useParams<{ categoryParam: string }>();
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  
-  const categories = [...new Set(products.map(product => product.category))];
+
+  useEffect(() => {
+    fetchProducts().then((data) => {
+      if (data) {
+        setAllProducts(data);
+        setFilteredProducts(data);
+      }
+      setLoading(false);
+    });
+  }, []);
 
   useEffect(() => {
     if (categoryParam) {
-      let category = "";
-      switch (categoryParam) {
-        case 'for-her':
-          category = 'For Her';
-          break;
-        case 'for-him':
-          category = 'For Him';
-          break;
-        default:
-          category = ""; // No specific category
-          break;
-      }
-      handleCategoryChange(category);
+      let category: string | null = null;
+      if (categoryParam === 'for-her') category = 'For Her';
+      else if (categoryParam === 'for-him') category = 'For Him';
+
+      handleCategoryChange(category, false);
     }
-  }, [categoryParam]);
-  
+  }, [categoryParam, allProducts]);
+
+
+  const categories = [...new Set(allProducts.map(product => product.category))];
+
   const handleCategoryChange = (category: string | null, updateURL: boolean = true) => {
     setCategoryFilter(category);
     filterProducts(category, priceFilter);
 
-    // Push to URL if triggered by user
     if (updateURL && category) {
-      const urlParam = category.toLowerCase().replace(/\s+/g, "-"); // e.g., "For Her" → "for-her"
+      const urlParam = category.toLowerCase().replace(/\s+/g, '-');
       navigate(`/products/${urlParam}`);
     }
 
     if (updateURL && !category) {
-      navigate("/products");
+      navigate('/products');
     }
   };
-  
+
   const handlePriceChange = (price: string | null) => {
     setPriceFilter(price);
     filterProducts(categoryFilter, price);
   };
-  
+
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setSortBy(value);
-    
+
     let sorted = [...filteredProducts];
-    
     switch (value) {
       case 'price-low':
         sorted.sort((a, b) => a.price - b.price);
@@ -74,8 +78,7 @@ const ProductListPage: React.FC = () => {
         sorted.sort((a, b) => b.rating - a.rating);
         break;
       default:
-        // Default sorting (featured)
-        sorted = [...products];
+        sorted = [...allProducts];
         if (categoryFilter) {
           sorted = sorted.filter(product => product.category === categoryFilter);
         }
@@ -83,30 +86,30 @@ const ProductListPage: React.FC = () => {
           sorted = applyPriceFilter(sorted, priceFilter);
         }
     }
-    
     setFilteredProducts(sorted);
   };
-  
+
   const filterProducts = (category: string | null, price: string | null) => {
-    let filtered = [...products];
-    
+    let filtered = [...allProducts];
+
     if (category) {
       filtered = filtered.filter(product => product.category === category);
     }
-    
+
     if (price) {
       filtered = applyPriceFilter(filtered, price);
     }
-    
-    // Re-apply current sorting
+
     if (sortBy !== 'featured') {
-      handleSortChange({ target: { value: sortBy } } as React.ChangeEvent<HTMLSelectElement>);
+      const fakeEvent = { target: { value: sortBy } } as React.ChangeEvent<HTMLSelectElement>;
+      handleSortChange(fakeEvent);
       return;
     }
+
     setFilteredProducts(filtered);
   };
-  
-  const applyPriceFilter = (products: any[], priceRange: string) => {
+
+  const applyPriceFilter = (products: Product[], priceRange: string): Product[] => {
     switch (priceRange) {
       case 'under-1000':
         return products.filter(product => product.price < 1000);
@@ -120,14 +123,15 @@ const ProductListPage: React.FC = () => {
         return products;
     }
   };
-  
+
   const resetFilters = () => {
     setCategoryFilter(null);
     setPriceFilter(null);
     setSortBy('featured');
-    setFilteredProducts(products);
+    setFilteredProducts(allProducts);
+    navigate('/products');
   };
-  
+
   const toggleFilters = () => {
     setShowFilters(!showFilters);
   };
@@ -299,7 +303,9 @@ const ProductListPage: React.FC = () => {
             </div>
           </div>
           
-          {filteredProducts.length > 0 ? (
+          {loading ? (
+            <div className="text-center py-10">Loading products...</div>
+          ) : filteredProducts.length > 0 ? (
             <ProductGrid products={filteredProducts} />
           ) : (
             <div className="bg-gray-50 p-8 rounded-lg text-center">

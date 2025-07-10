@@ -1,49 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Heart, Share2, Star, Truck, RotateCcw, Shield, ShoppingCart } from 'lucide-react';
-import { getProductById, products } from '../data/products';
+import { fetchProducts } from '../api/products';
+import { getProductById } from '../utils/productFilters';
 import { useCart } from '../context/CartContext';
 import Button from '../components/ui/Button';
 import ProductGrid from '../components/product/ProductGrid';
-import { useNavigate } from 'react-router-dom';
-
+import { Product } from '../types';
 
 const ProductDetailPage: React.FC = () => {
   const { user, isAuthenticated } = useAuth();
   const { id } = useParams<{ id: string }>();
-  const product = getProductById(id || '');
   const { addToCart } = useCart();
-  const [quantity, setQuantity] = useState(1);
-  const [activeTab, setActiveTab] = useState('description');
   const navigate = useNavigate();
 
-  
-  // Get related products (same category)
-  const relatedProducts = products
-    .filter(p => p.category === product?.category && p.id !== product?.id)
-    .slice(0, 4);
-  
+  const [products, setProducts] = useState<Product[]>([]);
+  const [product, setProduct] = useState<Product | undefined>();
+  const [quantity, setQuantity] = useState(1);
+  const [activeTab, setActiveTab] = useState('description');
+
   useEffect(() => {
-    // Reset quantity when product changes
+    fetchProducts().then((data) => {
+      if (data) {
+        setProducts(data);
+        const foundProduct = getProductById(data, id || '');
+        setProduct(foundProduct);
+      }
+    });
+  }, [id]);
+
+  useEffect(() => {
     setQuantity(1);
-    
-    // Scroll to top when component mounts
     window.scrollTo(0, 0);
   }, [id]);
-  
+
   if (!product) {
     return (
       <div className="container mx-auto px-4 py-16 text-center">
         <h1 className="text-2xl font-medium text-gray-900 mb-4">Product Not Found</h1>
         <p className="text-gray-600 mb-8">The product you are looking for does not exist or has been removed.</p>
-        <Button onClick={() => navigate('products')}>
+        <Button onClick={() => navigate('/products')}>
           Return to Shop
         </Button>
       </div>
     );
   }
-  
+
   const handleAddToCart = () => {
     if (!isAuthenticated) {
       alert('You need to be logged in to add items to your cart.');
@@ -52,23 +55,20 @@ const ProductDetailPage: React.FC = () => {
     }
     addToCart(product, quantity);
   };
-  
+
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);
     if (value > 0) {
       setQuantity(value);
     }
   };
-  
-  const incrementQuantity = () => {
-    setQuantity(prev => prev + 1);
-  };
-  
-  const decrementQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(prev => prev - 1);
-    }
-  };
+
+  const incrementQuantity = () => setQuantity(prev => prev + 1);
+  const decrementQuantity = () => quantity > 1 && setQuantity(prev => prev - 1);
+
+  const relatedProducts = products
+    .filter(p => p.category === product.category && p.product_id !== product.product_id)
+    .slice(0, 4);
   
   return (
     <div className="container mx-auto px-4 py-8">
@@ -94,7 +94,7 @@ const ProductDetailPage: React.FC = () => {
                   Featured
                 </span>
               )}
-              {product.fanFavorite && (
+              {product.fan_favorite && (
                 <span className="ml-2 bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">
                   Fan Favorite
                 </span>
@@ -126,7 +126,7 @@ const ProductDetailPage: React.FC = () => {
             </div>
             
             <p className="text-2xl font-medium text-gray-900 mb-6">
-              ${product.price.toFixed(2)}
+              KSH.{product.price.toFixed(2)}
             </p>
             
             <p className="text-gray-600 mb-6">

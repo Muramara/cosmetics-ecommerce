@@ -51,7 +51,7 @@ const CartPage: React.FC = () => {
             
             <div className="divide-y divide-gray-200 p-6">
               {cart.map(item => (
-                <CartItem key={item.product.id} item={item} />
+                <CartItem key={item.product.product_id} item={item} />
               ))}
             </div>
           </div>

@@ -461,7 +461,7 @@ const CheckoutPage: React.FC = () => {
             <div className="p-6">
               <div className="max-h-64 overflow-y-auto mb-4">
                 {cart.map(item => (
-                  <div key={item.product.id} className="flex items-center py-3 border-b border-gray-100 last:border-0">
+                  <div key={item.product.product_id} className="flex items-center py-3 border-b border-gray-100 last:border-0">
                     <div className="w-16 h-16 flex-shrink-0 rounded-md overflow-hidden">
                       <img 
                         src={item.product.image} 
